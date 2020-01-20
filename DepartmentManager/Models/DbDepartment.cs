@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,5 +21,7 @@ namespace DepartmentManager.Models
 
         [MaxLength(10)]
         public string Code { get; set; }
+
+        public virtual ICollection<DbDepartment> SubDepartments { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace DepartmentManager.Models
     public class DbEmployee
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal ID { get; set; }
 
         public DbDepartment Department { get; set; }
@@ -34,6 +35,6 @@ namespace DepartmentManager.Models
 
         [MaxLength(50)]
 
-        public string Position { get; set; }
+        public string Position { get; set; }                
     }
 }
