@@ -1,21 +1,20 @@
-﻿using DepartmentManager.Repository;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using DepartmentManager.Repository;
 
 namespace DepartmentManager.Forms
 {
     public partial class EmployeeInfoForm : Form
     {
-        EmployeeRepository repository = new EmployeeRepository();
+        readonly EmployeeRepository employeeRepository = new EmployeeRepository();
 
-        decimal id;
+        readonly private decimal id;
 
         public EmployeeInfoForm(decimal id)
         {
             this.id = id;
 
             InitializeComponent();
-
             ShowEmloyeeInfo();
         }
 
@@ -26,7 +25,7 @@ namespace DepartmentManager.Forms
 
         public void ShowEmloyeeInfo()
         {
-            var employee = repository.GetEmployee(id);
+            var employee = employeeRepository.GetEmployee(id);
 
             var date = CalculateAge(employee.DateOfBirth);
 
@@ -47,7 +46,9 @@ namespace DepartmentManager.Forms
         {
             int years = DateTime.Now.Year - timeOfBirth.Year;
 
-            if(DateTime.Now.Month< timeOfBirth.Month || (DateTime.Now.Month == timeOfBirth.Month && DateTime.Now.Day < timeOfBirth.Day))
+            if(DateTime.Now.Month< timeOfBirth.Month || 
+                (DateTime.Now.Month == timeOfBirth.Month 
+                && DateTime.Now.Day < timeOfBirth.Day))
             {
                 years--;
             }

@@ -1,20 +1,21 @@
-﻿using DepartmentManager.Models;
-using DepartmentManager.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DepartmentManager.Models;
+using DepartmentManager.Repository;
 
 namespace DepartmentManager.Forms
 {
     public partial class Department : Form
     {
-        Guid id;
-        DbDepartment department;
+        readonly private Guid id;
+        readonly private DbDepartment department;
 
-        DepartmentRepository depRepository = new DepartmentRepository();
-        EmployeeRepository empRepository = new EmployeeRepository();
+        readonly DepartmentRepository departmentRepository = new DepartmentRepository();
+        readonly EmployeeRepository employeeRepository = new EmployeeRepository();
+
         public Department(Guid id)
         {
             this.id = id;
@@ -22,16 +23,16 @@ namespace DepartmentManager.Forms
             InitializeComponent();
             InitializeDepartmentTree();
 
-            department = depRepository.GetDepartment(id);
+            department = departmentRepository.GetDepartment(id);
 
             NameTextLabel.Text = department.Name;
             CodeTextLabel.Text = department.Code;
-            EmployeesTable.DataSource = empRepository.GetDepartmentEmployee(id);
+            EmployeesTable.DataSource = employeeRepository.GetDepartmentEmployee(id);
         }
 
         private void InitializeDepartmentTree()
         {
-            var mainDepartment = depRepository
+            var mainDepartment = departmentRepository
                 .GetAllDepartments()
                 .FirstOrDefault(p => p.ID == id);
 
@@ -72,26 +73,26 @@ namespace DepartmentManager.Forms
 
                 var employee= (DbEmployee)EmployeesTable.CurrentRow.DataBoundItem;
 
-                var form = new Employee(employee, RefreshParentTableEmployee);
+                var form = new Employee(employee, RefreshParentTableEmployee, department.Name);
                 form.Show();
             }
         }
 
         private void AddEmloyeeButton_Click(object sender, EventArgs e)
         {
-            var form = new Employee(null, RefreshParentTableEmployee);
+            var form = new Employee(null, RefreshParentTableEmployee, department.Name);
             form.Show();
         }
 
         private void SubDepartmentTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var id = new Guid(SubDepartmentTreeView.SelectedNode.Name);
-            EmployeesTable.DataSource = empRepository.GetDepartmentEmployee(id);
+            EmployeesTable.DataSource = employeeRepository.GetDepartmentEmployee(id);
         }
 
         public void RefreshParentTableEmployee()
         {
-            EmployeesTable.DataSource = empRepository.GetDepartmentEmployee(id);
+            EmployeesTable.DataSource = employeeRepository.GetDepartmentEmployee(id);
         }
 
         public string GetDepartmentName()
@@ -99,17 +100,9 @@ namespace DepartmentManager.Forms
             return NameTextLabel.Text;
         }
 
-        private void EmployeesTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var emloyee = (DbEmployee)EmployeesTable.CurrentRow.DataBoundItem;
-
-            var form = new EmployeeInfoForm(emloyee.ID);
-            form.Show();
-        }
-
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            EmployeesTable.DataSource = empRepository.SearchEmployee(SearchTextBox.Text);
+            EmployeesTable.DataSource = employeeRepository.SearchEmployee(SearchTextBox.Text);
         }
 
         private void SearchTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -121,6 +114,14 @@ namespace DepartmentManager.Forms
             {
                 SearchErrorProvider.SetError(SearchTextBox, "Недопустимый формат");
             }
+        }
+
+        private void EmployeesTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var emloyee = (DbEmployee)EmployeesTable.CurrentRow.DataBoundItem;
+
+            var form = new EmployeeInfoForm(emloyee.ID);
+            form.Show();
         }
     }
 }

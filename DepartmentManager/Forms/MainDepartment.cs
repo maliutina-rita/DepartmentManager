@@ -1,18 +1,19 @@
-﻿using DepartmentManager.Forms;
-using DepartmentManager.Models;
-using DepartmentManager.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DepartmentManager.Forms;
+using DepartmentManager.Models;
+using DepartmentManager.Repository;
 
 namespace DepartmentManager
 {
     public partial class MainDepartment : Form
     {
-        DepartmentRepository departmentRepository = new DepartmentRepository();
-        EmployeeRepository employeeRepository = new EmployeeRepository();
+        readonly DepartmentRepository departmentRepository = new DepartmentRepository();
+        readonly EmployeeRepository employeeRepository = new EmployeeRepository();
+        private DbDepartment department;
 
         public MainDepartment()
         {
@@ -22,16 +23,16 @@ namespace DepartmentManager
 
         private void InitializeDepartmentTree()
         {
-            var mainDepartment = departmentRepository
+            department = departmentRepository
                 .GetAllDepartments()
                 .FirstOrDefault(p => p.ParentDepartmentID == null);
 
-            MainDepartmentNameLabel.Text = mainDepartment.Name;
-            MainDepartmentCodeLabel.Text = mainDepartment.Code;
+            MainDepartmentNameLabel.Text = department.Name;
+            MainDepartmentCodeLabel.Text = department.Code;
 
-            MainDepEmpTable.DataSource = employeeRepository.GetDepartmentEmployee(mainDepartment.ID);
+            MainDepEmpTable.DataSource = employeeRepository.GetDepartmentEmployee(department.ID);
 
-            foreach (var department in mainDepartment.SubDepartments)
+            foreach (var department in department.SubDepartments)
             {
                 var nodes = DepartemntsTree.Nodes.Add(department.ID.ToString(), department.Name);
                 if (department.SubDepartments.Any())
@@ -77,20 +78,11 @@ namespace DepartmentManager
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-
                 var employee = (DbEmployee)MainDepEmpTable.CurrentRow.DataBoundItem;
 
-                var form = new Employee(employee, RefreshMainDepartmentEmployee);
+                var form = new Employee(employee, RefreshMainDepartmentEmployee, department.Name);
                 form.Show();
             }
-        }
-
-        private void MainDepEmpTable_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            var emloyee = (DbEmployee)MainDepEmpTable.CurrentRow.DataBoundItem;
-
-            var form = new EmployeeInfoForm(emloyee.ID);
-            form.Show();
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)
@@ -112,6 +104,14 @@ namespace DepartmentManager
             {
                 SearchErrorProvider.SetError(SearchTextBox, "Недопустимый формат");
             }
+        }
+
+        private void MainDepEmpTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var emloyee = (DbEmployee)MainDepEmpTable.CurrentRow.DataBoundItem;
+
+            var form = new EmployeeInfoForm(emloyee.ID);
+            form.Show();
         }
     }
 }

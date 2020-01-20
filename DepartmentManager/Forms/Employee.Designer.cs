@@ -107,6 +107,7 @@
             // 
             // DepartmentComboBox
             // 
+            this.DepartmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DepartmentComboBox.FormattingEnabled = true;
             this.DepartmentComboBox.Location = new System.Drawing.Point(284, 30);
             this.DepartmentComboBox.Name = "DepartmentComboBox";

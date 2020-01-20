@@ -1,31 +1,34 @@
-﻿using DepartmentManager.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DepartmentManager.Models;
 
 namespace DepartmentManager.Repository
 {
     public class DepartmentRepository
     {
-        Context context = new Context();
+        private readonly Context context = new Context();
 
         public List<DbDepartment> GetAllDepartments()
         {
-            var departments = context.DbDepartments.ToList();
-
-            return departments;
+            return context.
+                DbDepartments.
+                ToList();
         }
 
         public DbDepartment GetDepartment(Guid id)
         {
-            var code = context.DbDepartments.FirstOrDefault(d => d.ID == id);
-            return code;
+            return context.
+                DbDepartments.
+                FirstOrDefault(d => d.ID == id);
         }
 
         public List<DbDepartment> GetSubDepartmens(Guid id)
         {
-            var departments = context.DbDepartments.Where(d => d.ParentDepartmentID == id).ToList();
-            return departments;
+            return context.
+                DbDepartments.
+                Where(d => d.ParentDepartmentID == id).
+                ToList();
         }
     }
 }

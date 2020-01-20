@@ -40,22 +40,22 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.MainDepEmpTable = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.SearchErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dbEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.SearchErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.dbDepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.InformationGroupBox.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainDepEmpTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbEmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDepartmentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,46 +172,22 @@
             this.Column1});
             this.MainDepEmpTable.DataSource = this.dbEmployeeBindingSource;
             this.MainDepEmpTable.Location = new System.Drawing.Point(2, 42);
+            this.MainDepEmpTable.MultiSelect = false;
             this.MainDepEmpTable.Name = "MainDepEmpTable";
+            this.MainDepEmpTable.ReadOnly = true;
+            this.MainDepEmpTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainDepEmpTable.Size = new System.Drawing.Size(563, 186);
             this.MainDepEmpTable.TabIndex = 0;
+            this.MainDepEmpTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellClick);
             this.MainDepEmpTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellContentClick);
-            this.MainDepEmpTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellContentDoubleClick_1);
-            // 
-            // surNameDataGridViewTextBoxColumn
-            // 
-            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
-            this.surNameDataGridViewTextBoxColumn.HeaderText = "SurName";
-            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            // 
-            // patronymicDataGridViewTextBoxColumn
-            // 
-            this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "Patronymic";
-            this.patronymicDataGridViewTextBoxColumn.HeaderText = "Patronymic";
-            this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
-            // 
-            // positionDataGridViewTextBoxColumn
-            // 
-            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
-            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
-            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
             // 
             // Column1
             // 
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Text = "Edit";
             this.Column1.UseColumnTextForButtonValue = true;
-            // 
-            // dbEmployeeBindingSource
-            // 
-            this.dbEmployeeBindingSource.DataSource = typeof(DepartmentManager.Models.DbEmployee);
             // 
             // SearchButton
             // 
@@ -226,6 +202,38 @@
             // SearchErrorProvider
             // 
             this.SearchErrorProvider.ContainerControl = this;
+            // 
+            // surNameDataGridViewTextBoxColumn
+            // 
+            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
+            this.surNameDataGridViewTextBoxColumn.HeaderText = "SurName";
+            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
+            this.surNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // patronymicDataGridViewTextBoxColumn
+            // 
+            this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn.HeaderText = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
+            this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // positionDataGridViewTextBoxColumn
+            // 
+            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
+            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
+            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
+            this.positionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dbEmployeeBindingSource
+            // 
+            this.dbEmployeeBindingSource.DataSource = typeof(DepartmentManager.Models.DbEmployee);
             // 
             // dbDepartmentBindingSource
             // 
@@ -247,8 +255,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainDepEmpTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbEmployeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEmployeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDepartmentBindingSource)).EndInit();
             this.ResumeLayout(false);
 

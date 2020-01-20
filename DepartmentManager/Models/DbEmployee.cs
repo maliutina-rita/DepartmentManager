@@ -34,7 +34,6 @@ namespace DepartmentManager.Models
         public string DocNumber { get; set; }
 
         [MaxLength(50)]
-
         public string Position { get; set; }                
     }
 }
