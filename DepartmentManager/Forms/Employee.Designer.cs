@@ -47,21 +47,9 @@
             this.PositionLabel = new System.Windows.Forms.Label();
             this.SurNameLabel = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.SurNameErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.FirstNameErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PatronymicErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DateErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DocSeriesErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DocNumberErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PositionErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.EmployeeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SurNameErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FirstNameErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PatronymicErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DateErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DocSeriesErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DocNumberErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PositionErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // EmployeeGroupBox
@@ -84,14 +72,14 @@
             this.EmployeeGroupBox.Controls.Add(this.SurNameLabel);
             this.EmployeeGroupBox.Location = new System.Drawing.Point(26, 12);
             this.EmployeeGroupBox.Name = "EmployeeGroupBox";
-            this.EmployeeGroupBox.Size = new System.Drawing.Size(428, 287);
+            this.EmployeeGroupBox.Size = new System.Drawing.Size(428, 274);
             this.EmployeeGroupBox.TabIndex = 0;
             this.EmployeeGroupBox.TabStop = false;
             this.EmployeeGroupBox.Text = "Registration";
             // 
             // SurNameTextBox
             // 
-            this.SurNameTextBox.Location = new System.Drawing.Point(77, 30);
+            this.SurNameTextBox.Location = new System.Drawing.Point(107, 27);
             this.SurNameTextBox.Name = "SurNameTextBox";
             this.SurNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.SurNameTextBox.TabIndex = 20;
@@ -99,7 +87,7 @@
             // 
             // DateOfBirthTimePicker
             // 
-            this.DateOfBirthTimePicker.Location = new System.Drawing.Point(77, 138);
+            this.DateOfBirthTimePicker.Location = new System.Drawing.Point(107, 129);
             this.DateOfBirthTimePicker.Name = "DateOfBirthTimePicker";
             this.DateOfBirthTimePicker.Size = new System.Drawing.Size(142, 20);
             this.DateOfBirthTimePicker.TabIndex = 19;
@@ -117,15 +105,15 @@
             // DepartmentLabel
             // 
             this.DepartmentLabel.AutoSize = true;
-            this.DepartmentLabel.Location = new System.Drawing.Point(213, 33);
+            this.DepartmentLabel.Location = new System.Drawing.Point(240, 33);
             this.DepartmentLabel.Name = "DepartmentLabel";
-            this.DepartmentLabel.Size = new System.Drawing.Size(62, 13);
+            this.DepartmentLabel.Size = new System.Drawing.Size(38, 13);
             this.DepartmentLabel.TabIndex = 16;
-            this.DepartmentLabel.Text = "Department";
+            this.DepartmentLabel.Text = "Отдел";
             // 
             // PositionTextBox
             // 
-            this.PositionTextBox.Location = new System.Drawing.Point(77, 249);
+            this.PositionTextBox.Location = new System.Drawing.Point(107, 236);
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(100, 20);
             this.PositionTextBox.TabIndex = 15;
@@ -133,7 +121,7 @@
             // 
             // DocNumberTextBox
             // 
-            this.DocNumberTextBox.Location = new System.Drawing.Point(77, 213);
+            this.DocNumberTextBox.Location = new System.Drawing.Point(107, 200);
             this.DocNumberTextBox.Name = "DocNumberTextBox";
             this.DocNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.DocNumberTextBox.TabIndex = 14;
@@ -141,7 +129,7 @@
             // 
             // DocSeriesTextBox
             // 
-            this.DocSeriesTextBox.Location = new System.Drawing.Point(77, 178);
+            this.DocSeriesTextBox.Location = new System.Drawing.Point(107, 164);
             this.DocSeriesTextBox.Name = "DocSeriesTextBox";
             this.DocSeriesTextBox.Size = new System.Drawing.Size(100, 20);
             this.DocSeriesTextBox.TabIndex = 13;
@@ -149,7 +137,7 @@
             // 
             // PatronymicTextBox
             // 
-            this.PatronymicTextBox.Location = new System.Drawing.Point(77, 103);
+            this.PatronymicTextBox.Location = new System.Drawing.Point(107, 92);
             this.PatronymicTextBox.Name = "PatronymicTextBox";
             this.PatronymicTextBox.Size = new System.Drawing.Size(100, 20);
             this.PatronymicTextBox.TabIndex = 11;
@@ -157,7 +145,7 @@
             // 
             // FirstNameTextBox
             // 
-            this.FirstNameTextBox.Location = new System.Drawing.Point(77, 66);
+            this.FirstNameTextBox.Location = new System.Drawing.Point(107, 58);
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.FirstNameTextBox.TabIndex = 10;
@@ -166,122 +154,92 @@
             // FirstNameLabel
             // 
             this.FirstNameLabel.AutoSize = true;
-            this.FirstNameLabel.Location = new System.Drawing.Point(6, 69);
+            this.FirstNameLabel.Location = new System.Drawing.Point(6, 61);
             this.FirstNameLabel.Name = "FirstNameLabel";
-            this.FirstNameLabel.Size = new System.Drawing.Size(54, 13);
+            this.FirstNameLabel.Size = new System.Drawing.Size(32, 13);
             this.FirstNameLabel.TabIndex = 8;
-            this.FirstNameLabel.Text = "FirstName";
+            this.FirstNameLabel.Text = "Имя:";
             // 
             // PatronymicLabel
             // 
             this.PatronymicLabel.AutoSize = true;
-            this.PatronymicLabel.Location = new System.Drawing.Point(6, 106);
+            this.PatronymicLabel.Location = new System.Drawing.Point(6, 95);
             this.PatronymicLabel.Name = "PatronymicLabel";
-            this.PatronymicLabel.Size = new System.Drawing.Size(59, 13);
+            this.PatronymicLabel.Size = new System.Drawing.Size(57, 13);
             this.PatronymicLabel.TabIndex = 7;
-            this.PatronymicLabel.Text = "Patronymic";
+            this.PatronymicLabel.Text = "Отчество:";
             // 
             // DateOfBirthLabel
             // 
             this.DateOfBirthLabel.AutoSize = true;
-            this.DateOfBirthLabel.Location = new System.Drawing.Point(6, 144);
+            this.DateOfBirthLabel.Location = new System.Drawing.Point(6, 129);
             this.DateOfBirthLabel.Name = "DateOfBirthLabel";
-            this.DateOfBirthLabel.Size = new System.Drawing.Size(65, 13);
+            this.DateOfBirthLabel.Size = new System.Drawing.Size(86, 13);
             this.DateOfBirthLabel.TabIndex = 6;
-            this.DateOfBirthLabel.Text = "Date of birth";
+            this.DateOfBirthLabel.Text = "Дата рождения";
             // 
             // DocSeriesLabel
             // 
             this.DocSeriesLabel.AutoSize = true;
-            this.DocSeriesLabel.Location = new System.Drawing.Point(6, 181);
+            this.DocSeriesLabel.Location = new System.Drawing.Point(6, 167);
             this.DocSeriesLabel.Name = "DocSeriesLabel";
-            this.DocSeriesLabel.Size = new System.Drawing.Size(56, 13);
+            this.DocSeriesLabel.Size = new System.Drawing.Size(95, 13);
             this.DocSeriesLabel.TabIndex = 5;
-            this.DocSeriesLabel.Text = "DocSeries";
+            this.DocSeriesLabel.Text = "Серия документа";
             // 
             // DocNumberLabel
             // 
             this.DocNumberLabel.AutoSize = true;
-            this.DocNumberLabel.Location = new System.Drawing.Point(6, 216);
+            this.DocNumberLabel.Location = new System.Drawing.Point(6, 203);
             this.DocNumberLabel.Name = "DocNumberLabel";
-            this.DocNumberLabel.Size = new System.Drawing.Size(64, 13);
+            this.DocNumberLabel.Size = new System.Drawing.Size(98, 13);
             this.DocNumberLabel.TabIndex = 4;
-            this.DocNumberLabel.Text = "DocNumber";
+            this.DocNumberLabel.Text = "Номер документа";
             // 
             // PositionLabel
             // 
             this.PositionLabel.AutoSize = true;
-            this.PositionLabel.Location = new System.Drawing.Point(6, 252);
+            this.PositionLabel.Location = new System.Drawing.Point(6, 239);
             this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(44, 13);
+            this.PositionLabel.Size = new System.Drawing.Size(65, 13);
             this.PositionLabel.TabIndex = 3;
-            this.PositionLabel.Text = "Position";
+            this.PositionLabel.Text = "Должность";
             // 
             // SurNameLabel
             // 
             this.SurNameLabel.AutoSize = true;
             this.SurNameLabel.Location = new System.Drawing.Point(6, 33);
             this.SurNameLabel.Name = "SurNameLabel";
-            this.SurNameLabel.Size = new System.Drawing.Size(51, 13);
+            this.SurNameLabel.Size = new System.Drawing.Size(59, 13);
             this.SurNameLabel.TabIndex = 1;
-            this.SurNameLabel.Text = "SurName";
+            this.SurNameLabel.Text = "Фамилия:";
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(338, 318);
+            this.SaveButton.Location = new System.Drawing.Point(361, 292);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(93, 37);
             this.SaveButton.TabIndex = 20;
-            this.SaveButton.Text = "Save";
+            this.SaveButton.Text = "Сохранить";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // SurNameErrorProvider
+            // ErrorProvider
             // 
-            this.SurNameErrorProvider.ContainerControl = this;
-            // 
-            // FirstNameErrorProvider
-            // 
-            this.FirstNameErrorProvider.ContainerControl = this;
-            // 
-            // PatronymicErrorProvider
-            // 
-            this.PatronymicErrorProvider.ContainerControl = this;
-            // 
-            // DateErrorProvider
-            // 
-            this.DateErrorProvider.ContainerControl = this;
-            // 
-            // DocSeriesErrorProvider
-            // 
-            this.DocSeriesErrorProvider.ContainerControl = this;
-            // 
-            // DocNumberErrorProvider
-            // 
-            this.DocNumberErrorProvider.ContainerControl = this;
-            // 
-            // PositionErrorProvider
-            // 
-            this.PositionErrorProvider.ContainerControl = this;
+            this.ErrorProvider.ContainerControl = this;
             // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 367);
+            this.ClientSize = new System.Drawing.Size(477, 345);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.EmployeeGroupBox);
             this.Name = "Employee";
             this.Text = "NewEmployeeRegistration";
             this.EmployeeGroupBox.ResumeLayout(false);
             this.EmployeeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SurNameErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FirstNameErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PatronymicErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DateErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DocSeriesErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DocNumberErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PositionErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,12 +264,6 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.DateTimePicker DateOfBirthTimePicker;
         private System.Windows.Forms.TextBox SurNameTextBox;
-        private System.Windows.Forms.ErrorProvider SurNameErrorProvider;
-        private System.Windows.Forms.ErrorProvider FirstNameErrorProvider;
-        private System.Windows.Forms.ErrorProvider PatronymicErrorProvider;
-        private System.Windows.Forms.ErrorProvider DateErrorProvider;
-        private System.Windows.Forms.ErrorProvider DocSeriesErrorProvider;
-        private System.Windows.Forms.ErrorProvider DocNumberErrorProvider;
-        private System.Windows.Forms.ErrorProvider PositionErrorProvider;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }

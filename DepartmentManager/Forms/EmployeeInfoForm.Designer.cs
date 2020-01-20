@@ -52,79 +52,79 @@
             // FirstNameLabel
             // 
             this.FirstNameLabel.AutoSize = true;
-            this.FirstNameLabel.Location = new System.Drawing.Point(22, 68);
+            this.FirstNameLabel.Location = new System.Drawing.Point(6, 58);
             this.FirstNameLabel.Name = "FirstNameLabel";
-            this.FirstNameLabel.Size = new System.Drawing.Size(57, 13);
+            this.FirstNameLabel.Size = new System.Drawing.Size(32, 13);
             this.FirstNameLabel.TabIndex = 15;
-            this.FirstNameLabel.Text = "FirstName:";
+            this.FirstNameLabel.Text = "Имя:";
             // 
             // PatronymicLabel
             // 
             this.PatronymicLabel.AutoSize = true;
-            this.PatronymicLabel.Location = new System.Drawing.Point(22, 105);
+            this.PatronymicLabel.Location = new System.Drawing.Point(6, 83);
             this.PatronymicLabel.Name = "PatronymicLabel";
-            this.PatronymicLabel.Size = new System.Drawing.Size(62, 13);
+            this.PatronymicLabel.Size = new System.Drawing.Size(57, 13);
             this.PatronymicLabel.TabIndex = 14;
-            this.PatronymicLabel.Text = "Patronymic:";
+            this.PatronymicLabel.Text = "Отчество:";
             // 
             // DateOfBirthLabel
             // 
             this.DateOfBirthLabel.AutoSize = true;
-            this.DateOfBirthLabel.Location = new System.Drawing.Point(22, 143);
+            this.DateOfBirthLabel.Location = new System.Drawing.Point(6, 110);
             this.DateOfBirthLabel.Name = "DateOfBirthLabel";
-            this.DateOfBirthLabel.Size = new System.Drawing.Size(29, 13);
+            this.DateOfBirthLabel.Size = new System.Drawing.Size(52, 13);
             this.DateOfBirthLabel.TabIndex = 13;
-            this.DateOfBirthLabel.Text = "Age:";
+            this.DateOfBirthLabel.Text = "Возраст:";
             // 
             // DocSeriesLabel
             // 
             this.DocSeriesLabel.AutoSize = true;
-            this.DocSeriesLabel.Location = new System.Drawing.Point(22, 180);
+            this.DocSeriesLabel.Location = new System.Drawing.Point(6, 140);
             this.DocSeriesLabel.Name = "DocSeriesLabel";
-            this.DocSeriesLabel.Size = new System.Drawing.Size(59, 13);
+            this.DocSeriesLabel.Size = new System.Drawing.Size(98, 13);
             this.DocSeriesLabel.TabIndex = 12;
-            this.DocSeriesLabel.Text = "DocSeries:";
+            this.DocSeriesLabel.Text = "Серия документа:";
             // 
             // DocNumberLabel
             // 
             this.DocNumberLabel.AutoSize = true;
-            this.DocNumberLabel.Location = new System.Drawing.Point(22, 215);
+            this.DocNumberLabel.Location = new System.Drawing.Point(6, 168);
             this.DocNumberLabel.Name = "DocNumberLabel";
-            this.DocNumberLabel.Size = new System.Drawing.Size(67, 13);
+            this.DocNumberLabel.Size = new System.Drawing.Size(101, 13);
             this.DocNumberLabel.TabIndex = 11;
-            this.DocNumberLabel.Text = "DocNumber:";
+            this.DocNumberLabel.Text = "Номер документа:";
             // 
             // PositionLabel
             // 
             this.PositionLabel.AutoSize = true;
-            this.PositionLabel.Location = new System.Drawing.Point(22, 251);
+            this.PositionLabel.Location = new System.Drawing.Point(6, 224);
             this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(47, 13);
+            this.PositionLabel.Size = new System.Drawing.Size(68, 13);
             this.PositionLabel.TabIndex = 10;
-            this.PositionLabel.Text = "Position:";
+            this.PositionLabel.Text = "Должность:";
             // 
             // SurNameLabel
             // 
             this.SurNameLabel.AutoSize = true;
-            this.SurNameLabel.Location = new System.Drawing.Point(22, 32);
+            this.SurNameLabel.Location = new System.Drawing.Point(6, 32);
             this.SurNameLabel.Name = "SurNameLabel";
-            this.SurNameLabel.Size = new System.Drawing.Size(75, 13);
+            this.SurNameLabel.Size = new System.Drawing.Size(59, 13);
             this.SurNameLabel.TabIndex = 9;
-            this.SurNameLabel.Text = "SurNameText:";
+            this.SurNameLabel.Text = "Фамилия:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 282);
+            this.label1.Location = new System.Drawing.Point(6, 195);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Department:";
+            this.label1.Text = "Отдел:";
             // 
             // SurNameText
             // 
             this.SurNameText.AutoSize = true;
-            this.SurNameText.Location = new System.Drawing.Point(118, 32);
+            this.SurNameText.Location = new System.Drawing.Point(107, 32);
             this.SurNameText.Name = "SurNameText";
             this.SurNameText.Size = new System.Drawing.Size(72, 13);
             this.SurNameText.TabIndex = 17;
@@ -133,7 +133,7 @@
             // FirstNameText
             // 
             this.FirstNameText.AutoSize = true;
-            this.FirstNameText.Location = new System.Drawing.Point(118, 68);
+            this.FirstNameText.Location = new System.Drawing.Point(107, 58);
             this.FirstNameText.Name = "FirstNameText";
             this.FirstNameText.Size = new System.Drawing.Size(75, 13);
             this.FirstNameText.TabIndex = 18;
@@ -142,7 +142,7 @@
             // AgeText
             // 
             this.AgeText.AutoSize = true;
-            this.AgeText.Location = new System.Drawing.Point(118, 143);
+            this.AgeText.Location = new System.Drawing.Point(107, 110);
             this.AgeText.Name = "AgeText";
             this.AgeText.Size = new System.Drawing.Size(47, 13);
             this.AgeText.TabIndex = 19;
@@ -151,7 +151,7 @@
             // PatronymicText
             // 
             this.PatronymicText.AutoSize = true;
-            this.PatronymicText.Location = new System.Drawing.Point(118, 105);
+            this.PatronymicText.Location = new System.Drawing.Point(107, 83);
             this.PatronymicText.Name = "PatronymicText";
             this.PatronymicText.Size = new System.Drawing.Size(80, 13);
             this.PatronymicText.TabIndex = 20;
@@ -160,7 +160,7 @@
             // DocSeriesText
             // 
             this.DocSeriesText.AutoSize = true;
-            this.DocSeriesText.Location = new System.Drawing.Point(118, 180);
+            this.DocSeriesText.Location = new System.Drawing.Point(107, 140);
             this.DocSeriesText.Name = "DocSeriesText";
             this.DocSeriesText.Size = new System.Drawing.Size(77, 13);
             this.DocSeriesText.TabIndex = 21;
@@ -169,7 +169,7 @@
             // DocNumberText
             // 
             this.DocNumberText.AutoSize = true;
-            this.DocNumberText.Location = new System.Drawing.Point(118, 215);
+            this.DocNumberText.Location = new System.Drawing.Point(107, 168);
             this.DocNumberText.Name = "DocNumberText";
             this.DocNumberText.Size = new System.Drawing.Size(85, 13);
             this.DocNumberText.TabIndex = 22;
@@ -178,7 +178,7 @@
             // PositionText
             // 
             this.PositionText.AutoSize = true;
-            this.PositionText.Location = new System.Drawing.Point(118, 251);
+            this.PositionText.Location = new System.Drawing.Point(107, 224);
             this.PositionText.Name = "PositionText";
             this.PositionText.Size = new System.Drawing.Size(65, 13);
             this.PositionText.TabIndex = 23;
@@ -187,7 +187,7 @@
             // DepartmentText
             // 
             this.DepartmentText.AutoSize = true;
-            this.DepartmentText.Location = new System.Drawing.Point(118, 282);
+            this.DepartmentText.Location = new System.Drawing.Point(107, 195);
             this.DepartmentText.Name = "DepartmentText";
             this.DepartmentText.Size = new System.Drawing.Size(83, 13);
             this.DepartmentText.TabIndex = 24;
@@ -199,7 +199,7 @@
             this.ReturnButton.Name = "ReturnButton";
             this.ReturnButton.Size = new System.Drawing.Size(75, 23);
             this.ReturnButton.TabIndex = 25;
-            this.ReturnButton.Text = "Return";
+            this.ReturnButton.Text = "Назад";
             this.ReturnButton.UseVisualStyleBackColor = true;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
@@ -223,16 +223,16 @@
             this.InformationGroupBox.Controls.Add(this.SurNameText);
             this.InformationGroupBox.Location = new System.Drawing.Point(16, 41);
             this.InformationGroupBox.Name = "InformationGroupBox";
-            this.InformationGroupBox.Size = new System.Drawing.Size(319, 315);
+            this.InformationGroupBox.Size = new System.Drawing.Size(319, 261);
             this.InformationGroupBox.TabIndex = 26;
             this.InformationGroupBox.TabStop = false;
-            this.InformationGroupBox.Text = "Information";
+            this.InformationGroupBox.Text = "Информация";
             // 
             // EmployeeInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 370);
+            this.ClientSize = new System.Drawing.Size(358, 313);
             this.Controls.Add(this.InformationGroupBox);
             this.Controls.Add(this.ReturnButton);
             this.Name = "EmployeeInfoForm";

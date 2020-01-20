@@ -7,8 +7,7 @@ namespace DepartmentManager.Repository
 {
     public class DepartmentRepository
     {
-        private readonly Context context = new Context();
-
+        readonly private Context context = new Context();
         public List<DbDepartment> GetAllDepartments()
         {
             return context.
@@ -25,8 +24,7 @@ namespace DepartmentManager.Repository
 
         public List<DbDepartment> GetSubDepartmens(Guid id)
         {
-            return context.
-                DbDepartments.
+            return context.DbDepartments.
                 Where(d => d.ParentDepartmentID == id).
                 ToList();
         }

@@ -61,7 +61,7 @@ namespace DepartmentManager
             var mainDepartment = departmentRepository
                 .GetAllDepartments()
                 .FirstOrDefault(p => p.ParentDepartmentID == null);
-
+            
             MainDepEmpTable.DataSource = employeeRepository.GetDepartmentEmployee(mainDepartment.ID);
         }
 
@@ -106,7 +106,7 @@ namespace DepartmentManager
             }
         }
 
-        private void MainDepEmpTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void MainDepEmpTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var emloyee = (DbEmployee)MainDepEmpTable.CurrentRow.DataBoundItem;
 

@@ -15,8 +15,6 @@ namespace DepartmentManager.Forms
         readonly private DbEmployee employee;
         readonly private string depName;
 
-        private bool IsValidForm = false;  
-
         public Employee(DbEmployee employee, Action refreshTable, string depName)
         {
             this.employee = employee;
@@ -28,12 +26,12 @@ namespace DepartmentManager.Forms
             if (employee == null)
             {
                 this.Text = "AddNewEmployee";
-                EmployeeGroupBox.Text = "Add new employee";
+                EmployeeGroupBox.Text = "Добавить данные";
             }
             else
             {
                 this.Text = "EditEmployee";
-                EmployeeGroupBox.Text = "Edit employee";
+                EmployeeGroupBox.Text = "Редактировать данные";
             }
 
             DepartmentComboBox.DataSource = departmentRepository.GetAllDepartments();
@@ -44,53 +42,32 @@ namespace DepartmentManager.Forms
             InitializeTextBox();
 
             DepartmentComboBox.SelectedIndex = DepartmentComboBox.FindStringExact(depName);
-
-          //  SaveButton.Enabled = false;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if(ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(SurNameTextBox.Text, "Messeg", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                MessageBox.Show(FirstNameTextBox.Text, "Messeg", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (employee == null)
+                {
+                    employeeRepository.AddEmployee(SurNameTextBox.Text, FirstNameTextBox.Text, PatronymicTextBox.Text, DateOfBirthTimePicker.Value,
+                        DocSeriesTextBox.Text, DocNumberTextBox.Text, PositionTextBox.Text, (DbDepartment)DepartmentComboBox.SelectedItem);
 
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(PatronymicTextBox.Text, "Messeg", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                    refreshTable();
+                    Close();
+                }
+                else
+                {
+                    employeeRepository.EditEmployee(employee.ID, SurNameTextBox.Text, FirstNameTextBox.Text, PatronymicTextBox.Text, DateOfBirthTimePicker.Value,
+                       DocSeriesTextBox.Text, DocNumberTextBox.Text, PositionTextBox.Text, DepartmentComboBox.SelectedItem.ToString());
 
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(PositionTextBox.Text, "Messeg", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-
-
-            if (employee == null)
-            {
-                employeeRepository.AddEmployee(SurNameTextBox.Text, FirstNameTextBox.Text, PatronymicTextBox.Text, DateOfBirthTimePicker.Value,
-                    DocSeriesTextBox.Text, DocNumberTextBox.Text, PositionTextBox.Text, (DbDepartment) DepartmentComboBox.SelectedItem);
-
-                refreshTable();
-                Close();              
-            }            
-            else
-            {
-                employeeRepository.EditEmployee(employee.ID, SurNameTextBox.Text, FirstNameTextBox.Text, PatronymicTextBox.Text, DateOfBirthTimePicker.Value,
-                   DocSeriesTextBox.Text, DocNumberTextBox.Text, PositionTextBox.Text, DepartmentComboBox.SelectedItem.ToString());
-
-                refreshTable();
-                Close();
-            }
+                    refreshTable();
+                    Close();
+                }
+            } 
         }
 
-        private void SurNameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        public void SurNameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             string namePattern = @"[а-я]";
 
@@ -100,18 +77,18 @@ namespace DepartmentManager.Forms
             {
                 e.Cancel = true;
                 SurNameTextBox.Focus();
-                SurNameErrorProvider.SetError(SurNameTextBox, "Укажите фамилию");
+                ErrorProvider.SetError(SurNameTextBox, "Укажите фамилию");
             }
             else if (surNameIsMatch == false)
             {
                 e.Cancel = true;
                 SurNameTextBox.Focus();
-                SurNameErrorProvider.SetError(SurNameTextBox, "Недопустимый формат");
+                ErrorProvider.SetError(SurNameTextBox, "Недопустимый формат");
             }
             else
             {
                 e.Cancel = false;
-                SurNameErrorProvider.SetError(SurNameTextBox, null);
+                ErrorProvider.SetError(SurNameTextBox, null);
             }           
         }
 
@@ -124,18 +101,18 @@ namespace DepartmentManager.Forms
             {
                 e.Cancel = true;
                 FirstNameTextBox.Focus();
-                FirstNameErrorProvider.SetError(FirstNameTextBox, "Укажите имя");
+                ErrorProvider.SetError(FirstNameTextBox, "Укажите имя");
             }
             else if (firstNameIsMatch == false)
             {
                 e.Cancel = true;
                 FirstNameTextBox.Focus();
-                FirstNameErrorProvider.SetError(FirstNameTextBox, "Недопустимый формат");
+                ErrorProvider.SetError(FirstNameTextBox, "Недопустимый формат");
             }
             else
             {
                 e.Cancel = false;
-                FirstNameErrorProvider.SetError(FirstNameTextBox, null);
+                ErrorProvider.SetError(FirstNameTextBox, null);
             }           
         }
 
@@ -148,12 +125,12 @@ namespace DepartmentManager.Forms
             {
                 e.Cancel = true;
                 PatronymicTextBox.Focus();
-                PatronymicErrorProvider.SetError(PatronymicTextBox, "Недопустимый формат");
+                ErrorProvider.SetError(PatronymicTextBox, "Недопустимый формат");
             }
             else
             {
                 e.Cancel = false;
-                PatronymicErrorProvider.SetError(FirstNameTextBox, null);
+                ErrorProvider.SetError(PatronymicTextBox, null);
             }           
         }
 
@@ -161,22 +138,22 @@ namespace DepartmentManager.Forms
         {
             if (DateOfBirthTimePicker.Value > DateTime.Today)
             {
-                DateErrorProvider.SetError(DateOfBirthTimePicker, "Неверная дата");
+                ErrorProvider.SetError(DateOfBirthTimePicker, "Неверная дата");
             }
             else
             {
-                DateErrorProvider.Clear();
+                ErrorProvider.Clear();
             }            
         }
 
         private void DocSeriesTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //DocValidating(DocSeriesTextBox.Text, DocSeriesTextBox, DocSeriesErrorProvider);           
+            DocValidating(DocSeriesTextBox.Text, DocSeriesTextBox, ErrorProvider, e);           
         }
 
         private void DocNumberTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //DocValidating(DocNumberTextBox.Text, DocNumberTextBox, DocNumberErrorProvider);            
+            DocValidating(DocNumberTextBox.Text, DocNumberTextBox, ErrorProvider, e);            
         }
 
         private void PositionTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -189,33 +166,36 @@ namespace DepartmentManager.Forms
             {
                 e.Cancel = true;
                 PositionTextBox.Focus();
-                PositionErrorProvider.SetError(PositionTextBox, "Укажите должность");
+                ErrorProvider.SetError(PositionTextBox, "Укажите должность");
             }
             else if (positionIsMatch == false)
             {
                 e.Cancel = true;
                 PositionTextBox.Focus();
-                PositionErrorProvider.SetError(PositionTextBox, "Неверный формат");
+                ErrorProvider.SetError(PositionTextBox, "Неверный формат");
             }
             else
             {
                 e.Cancel = false;
-                PositionErrorProvider.SetError(PositionTextBox, null);
+                ErrorProvider.SetError(PositionTextBox, null);
             }           
         }
 
-        public void DocValidating(string docText, TextBox docTextBox, ErrorProvider error)
+        public void DocValidating(string docText, TextBox docTextBox, ErrorProvider error, System.ComponentModel.CancelEventArgs e)
         {
             string docPattern = @"\d";
             var docIsMatch = Regex.IsMatch(docText, docPattern);
 
             if (docIsMatch == false)
             {
+                e.Cancel = true;
+                docTextBox.Focus();
                 error.SetError(docTextBox, "Неверный формат");
             }
             else
             {
-                error.Clear();
+                e.Cancel = false;
+                error.SetError(docTextBox, null);
             }            
         }
 
@@ -229,39 +209,6 @@ namespace DepartmentManager.Forms
             PositionTextBox.MaxLength = 50;
             DateOfBirthTimePicker.MaxDate = DateTime.Today;
         }
-
-        public void UpdateValidForm()
-        {
-            //SaveButton.Enabled =
-            //    IsValid(SurNameErrorProvider) &&
-            //    IsValid(FirstNameErrorProvider) &&
-            //    IsValid(PatronymicErrorProvider) &&
-            //    IsValid(DocSeriesErrorProvider) &&
-            //    IsValid(DocNumberErrorProvider) &&
-            //    IsValid(PositionErrorProvider);
-
-             
-
-            //var a1 = IsValid(SurNameErrorProvider);
-            //var a2 = IsValid(FirstNameErrorProvider);
-            //var a3 = IsValid(PatronymicErrorProvider);
-            //var a4 = IsValid(DocSeriesErrorProvider);
-            //var a5 = IsValid(DocNumberErrorProvider);
-            //var a6 = IsValid(PositionErrorProvider);
-        }
-
-        //private bool IsValid(ErrorProvider errorProvider)
-        //{
-        //    foreach (Control c in errorProvider.ContainerControl.Controls)
-        //    {
-        //        var error = errorProvider.GetError(c);
-        //        if (error != "")
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
 
         public void InitializeTextBox()
         {

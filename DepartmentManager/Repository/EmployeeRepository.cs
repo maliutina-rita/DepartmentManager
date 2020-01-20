@@ -7,20 +7,26 @@ using DepartmentManager.Models;
 namespace DepartmentManager.Repository
 {
     public class EmployeeRepository
-    {
-        private readonly Context context = new Context();
-
+    {  
         public DbEmployee GetEmployee(decimal id)
         {
-            return context
-                .DbEmployees
-                .Include(i => i.Department)
-                .FirstOrDefault(d => d.ID == id);
+            using(var context = new Context())
+            {
+                return context
+               .DbEmployees
+               .Include(i => i.Department)
+               .FirstOrDefault(d => d.ID == id);
+            }            
         }
 
         public List<DbEmployee> GetDepartmentEmployee(Guid departamentId)
         {
-            return context.DbEmployees.Where(e => e.DepartmentID == departamentId).ToList();
+            using (var context = new Context())
+            {
+                return context.DbEmployees.
+                    Where(e => e.DepartmentID == departamentId).
+                    ToList();
+            }
         }
 
         public void AddEmployee(string surName, string firstName, string patronymic, DateTime dateOfBirth, string docSeries, 
@@ -34,60 +40,70 @@ namespace DepartmentManager.Repository
             employee.DateOfBirth = dateOfBirth;
             employee.Position = Position;
 
-            if (String.IsNullOrEmpty(patronymic))
+            if (!string.IsNullOrEmpty(patronymic))
             {
                 employee.Patronymic = patronymic;
             }
             
-            if(String.IsNullOrEmpty(docSeries))
+            if(!string.IsNullOrEmpty(docSeries))
             {
                 employee.DocSeries = docSeries;
             }
 
-            if(String.IsNullOrEmpty(docNumber))
+            if(!string.IsNullOrEmpty(docNumber))
             {
                 employee.DocNumber = docNumber;
             }
-            context.DbEmployees.Add(employee);
-            context.SaveChanges();
+
+            using (var context = new Context())
+            {
+                context.DbEmployees.Add(employee);
+                context.SaveChanges();
+            }
         }
 
         public void EditEmployee(decimal id, string surName, string firstName, string patronymic, DateTime dateOfBirth,
             string docSeries, string docNumber, string position, string currentDepartment)
         {
-            var employee = context.
+            using (var context = new Context())
+            {
+                var employee = context.
                 DbEmployees.
                 FirstOrDefault(d => d.ID == id) ?? throw new ArgumentException("Incorrect ID");
 
-            employee.SurName = surName;
-            employee.FirstName = firstName;
-            employee.Patronymic = patronymic;
-            employee.DateOfBirth = dateOfBirth;
-            employee.DocSeries = docSeries;
-            employee.DocNumber = docNumber;
-            employee.Position = position;
+                employee.SurName = surName;
+                employee.FirstName = firstName;
+                employee.Patronymic = patronymic;
+                employee.DateOfBirth = dateOfBirth;
+                employee.DocSeries = docSeries;
+                employee.DocNumber = docNumber;
+                employee.Position = position;
 
-            var department = context
-                .DbDepartments
-                .FirstOrDefault(d => d.Name == currentDepartment);
+                var department = context
+                    .DbDepartments
+                    .FirstOrDefault(d => d.Name == currentDepartment);
 
-            if (department != null)
-            {
-                employee.Department = department;
+                if (department != null)
+                {
+                    employee.Department = department;
+                }
+                context.SaveChanges();
             }
-            context.SaveChanges();
         }
 
         public List<DbEmployee> SearchEmployee(string search)
         {
-             return context
+            using (var context = new Context())
+            {
+                return context
                 .DbEmployees
-                .Where(d => 
-                    d.SurName.Contains(search) || 
+                .Where(d =>
+                    d.SurName.Contains(search) ||
                     d.FirstName.Contains(search) ||
-                    d.Patronymic.Contains(search) || 
+                    d.Patronymic.Contains(search) ||
                     d.Position.Contains(search))
                 .ToList();
+            }
         }
     }
 } 

@@ -40,15 +40,15 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.MainDepEmpTable = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dbEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbDepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dbEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbDepartmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.InformationGroupBox.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             this.MainDepartmentNameLabel.AutoSize = true;
             this.MainDepartmentNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MainDepartmentNameLabel.Location = new System.Drawing.Point(54, 29);
+            this.MainDepartmentNameLabel.Location = new System.Drawing.Point(76, 29);
             this.MainDepartmentNameLabel.Name = "MainDepartmentNameLabel";
             this.MainDepartmentNameLabel.Size = new System.Drawing.Size(90, 13);
             this.MainDepartmentNameLabel.TabIndex = 7;
@@ -98,25 +98,25 @@
             this.InformationGroupBox.Size = new System.Drawing.Size(574, 100);
             this.InformationGroupBox.TabIndex = 9;
             this.InformationGroupBox.TabStop = false;
-            this.InformationGroupBox.Text = "Information";
+            this.InformationGroupBox.Text = "Информация";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Code:";
+            this.label2.Text = "Код:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Name:";
+            this.label1.Text = "Название:";
             // 
             // MainTabControl
             // 
@@ -136,7 +136,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(566, 228);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Departments";
+            this.tabPage1.Text = "Отделы";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -149,7 +149,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(566, 228);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Employees";
+            this.tabPage2.Text = "Сотрудники";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // SearchTextBox
@@ -178,16 +178,8 @@
             this.MainDepEmpTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainDepEmpTable.Size = new System.Drawing.Size(563, 186);
             this.MainDepEmpTable.TabIndex = 0;
-            this.MainDepEmpTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellClick);
             this.MainDepEmpTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Text = "Edit";
-            this.Column1.UseColumnTextForButtonValue = true;
+            this.MainDepEmpTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDepEmpTable_CellDoubleClick);
             // 
             // SearchButton
             // 
@@ -195,41 +187,13 @@
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 11;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "Поиск";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // SearchErrorProvider
             // 
             this.SearchErrorProvider.ContainerControl = this;
-            // 
-            // surNameDataGridViewTextBoxColumn
-            // 
-            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
-            this.surNameDataGridViewTextBoxColumn.HeaderText = "SurName";
-            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
-            this.surNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // patronymicDataGridViewTextBoxColumn
-            // 
-            this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "Patronymic";
-            this.patronymicDataGridViewTextBoxColumn.HeaderText = "Patronymic";
-            this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
-            this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // positionDataGridViewTextBoxColumn
-            // 
-            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
-            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
-            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
-            this.positionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dbEmployeeBindingSource
             // 
@@ -238,6 +202,42 @@
             // dbDepartmentBindingSource
             // 
             this.dbDepartmentBindingSource.DataSource = typeof(DepartmentManager.Models.DbDepartment);
+            // 
+            // surNameDataGridViewTextBoxColumn
+            // 
+            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
+            this.surNameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
+            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
+            this.surNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Имя";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // patronymicDataGridViewTextBoxColumn
+            // 
+            this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn.HeaderText = "Отчество";
+            this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
+            this.patronymicDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // positionDataGridViewTextBoxColumn
+            // 
+            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
+            this.positionDataGridViewTextBoxColumn.HeaderText = "Должность";
+            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
+            this.positionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Text = "Редактировать";
+            this.Column1.UseColumnTextForButtonValue = true;
             // 
             // MainDepartment
             // 
@@ -275,13 +275,13 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView MainDepEmpTable;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.ErrorProvider SearchErrorProvider;
         private System.Windows.Forms.DataGridViewTextBoxColumn surNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patronymicDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.TextBox SearchTextBox;
-        private System.Windows.Forms.ErrorProvider SearchErrorProvider;
     }
 }

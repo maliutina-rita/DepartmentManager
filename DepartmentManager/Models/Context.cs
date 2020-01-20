@@ -11,6 +11,6 @@ namespace DepartmentManager.Models
 
         public DbSet<DbDepartment> DbDepartments { get; set; }
 
-        public DbSet<DbEmployee> DbEmployees { get; set; }
+        public DbSet<DbEmployee> DbEmployees { get; set; }       
     }
 }
